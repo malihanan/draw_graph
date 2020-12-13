@@ -65,7 +65,7 @@ class MyScreen extends StatelessWidget {
           child: Text(
             "Tasks Track",
             style: TextStyle(
-              fontSize: 32,
+              fontSize: 28,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
             ),
@@ -73,7 +73,7 @@ class MyScreen extends StatelessWidget {
         ),
         LineGraph(
           features: features,
-          size: Size(500, 400),
+          size: Size(320, 300),
           labelX: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
           labelY: ['20%', '40%', '60%', '80%', '100%'],
           showDescription: true,
