@@ -2,7 +2,7 @@ name: draw_graph
 description: >-
   Do you want to display a graph in your app? This package can help.
   It has a widget that draws line graph for you.
-version: 0.0.1
+version: 0.0.2
 author: Maliha Nan<malihanan09@gmail.com>
 homepage: https://github.com/malihanan/draw_graph.git
 

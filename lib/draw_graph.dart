@@ -45,9 +45,9 @@ class _LineGraphState extends State<LineGraph> {
       child: widget.showDescription
           ? Column(
               children: <Widget>[
-                getGraph(Size(widget.size.width, widget.size.height - 50)),
+                getGraph(Size(widget.size.width, widget.size.height - 70)),
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 Container(
                   height: 28,
@@ -103,7 +103,6 @@ class _LineGraphState extends State<LineGraph> {
             Text(
               feature.title,
               style: TextStyle(
-                fontSize: 24,
                 fontFamily: widget.fontFamily,
               ),
             ),
