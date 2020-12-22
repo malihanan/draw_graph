@@ -15,7 +15,7 @@ class LineGraphPainter extends CustomPainter {
     @required this.labelY,
     @required this.fontFamily,
     @required this.graphColor,
-    this.graphOpacity,
+    @required this.graphOpacity,
   });
 
   @override
