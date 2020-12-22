@@ -13,6 +13,7 @@ class LineGraph extends StatefulWidget {
   final String fontFamily;
   final Color graphColor;
   final bool showDescription;
+  final double graphOpacity;
 
   LineGraph({
     @required this.features,
@@ -22,6 +23,7 @@ class LineGraph extends StatefulWidget {
     this.fontFamily,
     this.graphColor = Colors.grey,
     this.showDescription = false,
+    this.graphOpacity,
   });
 
   @override
@@ -68,6 +70,7 @@ class _LineGraphState extends State<LineGraph> {
         labelY: widget.labelY,
         fontFamily: widget.fontFamily,
         graphColor: widget.graphColor,
+        graphOpacity: widget.graphOpacity,
       ),
     );
   }
