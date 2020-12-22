@@ -78,6 +78,7 @@ class MyScreen extends StatelessWidget {
           labelY: ['20%', '40%', '60%', '80%', '100%'],
           showDescription: true,
           graphColor: Colors.white30,
+          graphOpacity: 0.3,
         ),
         SizedBox(
           height: 50,

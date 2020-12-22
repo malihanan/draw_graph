@@ -7,6 +7,7 @@ class LineGraphPainter extends CustomPainter {
   final List<String> labelY;
   final String fontFamily;
   final Color graphColor;
+  final double graphOpacity;
 
   LineGraphPainter({
     @required this.features,
@@ -14,6 +15,7 @@ class LineGraphPainter extends CustomPainter {
     @required this.labelY,
     @required this.fontFamily,
     @required this.graphColor,
+    @required this.graphOpacity,
   });
 
   @override
@@ -132,7 +134,7 @@ class LineGraphPainter extends CustomPainter {
   void drawGraph(
       Feature feature, Canvas canvas, Size graph, Size cell, Size margin) {
     Paint fillPaint = Paint()
-      ..color = feature.color.withOpacity(0.3)
+      ..color = feature.color.withOpacity(graphOpacity ?? 0.3)
       ..style = PaintingStyle.fill;
     Paint strokePaint = Paint()
       ..color = feature.color
