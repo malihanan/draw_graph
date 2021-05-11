@@ -2,28 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:draw_graph/models/feature.dart';
 
 class LineGraphPainter extends CustomPainter {
-  final List<Feature> features;
-  final List<String> labelX;
-  final List<String> labelY;
-  final String fontFamily;
+  final List<Feature>? features;
+  final List<String>? labelX;
+  final List<String>? labelY;
+  final String? fontFamily;
   final Color graphColor;
   final double graphOpacity;
 
   LineGraphPainter({
-    @required this.features,
-    @required this.labelX,
-    @required this.labelY,
-    @required this.fontFamily,
-    @required this.graphColor,
-    @required this.graphOpacity,
+    required this.features,
+    required this.labelX,
+    required this.labelY,
+    required this.fontFamily,
+    required this.graphColor,
+    required this.graphOpacity,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
     double _offsetX = 1;
-    for (int i = 0; i < labelY.length; i++) {
-      if (labelY[i].length > _offsetX) {
-        _offsetX = labelY[i].length.toDouble();
+    for (int i = 0; i < labelY!.length; i++) {
+      if (labelY![i].length > _offsetX) {
+        _offsetX = labelY![i].length.toDouble();
       }
     }
 
@@ -35,17 +35,17 @@ class LineGraphPainter extends CustomPainter {
       size.height - 2 * margin.height,
     );
     Size cell = Size(
-      graph.width / (labelX.length - 1),
-      graph.height / labelY.length,
+      graph.width / (labelX!.length - 1),
+      graph.height / labelY!.length,
     );
 
     drawAxis(canvas, graph, margin);
     drawLabelsY(canvas, size, margin, graph, cell);
     drawLabelsX(canvas, margin, graph, cell);
 
-    for (int i = 0; i < features.length; i++) {
+    for (int i = 0; i < features!.length; i++) {
       drawGraph(
-        features[i],
+        features![i],
         canvas,
         graph,
         cell,
@@ -83,13 +83,13 @@ class LineGraphPainter extends CustomPainter {
 
   void drawLabelsY(
       Canvas canvas, Size size, Size margin, Size graph, Size cell) {
-    for (int i = 0; i < labelY.length; i++) {
+    for (int i = 0; i < labelY!.length; i++) {
       TextSpan span = new TextSpan(
         style: new TextStyle(
           color: graphColor,
           fontFamily: fontFamily,
         ),
-        text: labelY[i],
+        text: labelY![i],
       );
       TextPainter tp = new TextPainter(
         text: span,
@@ -108,13 +108,13 @@ class LineGraphPainter extends CustomPainter {
   }
 
   void drawLabelsX(Canvas canvas, Size margin, Size graph, Size cell) {
-    for (int i = 0; i < labelX.length; i++) {
+    for (int i = 0; i < labelX!.length; i++) {
       TextSpan span = new TextSpan(
         style: new TextStyle(
           color: graphColor,
           fontFamily: fontFamily,
         ),
-        text: labelX[i],
+        text: labelX![i],
       );
       TextPainter tp = new TextPainter(
           text: span,
@@ -153,7 +153,7 @@ class LineGraphPainter extends CustomPainter {
       margin.height + graph.height - feature.data[0] * graph.height,
     );
     int i = 0;
-    for (i = 1; i < labelX.length && i < feature.data.length; i++) {
+    for (i = 1; i < labelX!.length && i < feature.data.length; i++) {
       if (feature.data[i] > 1) {
         feature.data[i] = 1;
       }

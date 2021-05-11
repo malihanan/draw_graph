@@ -8,6 +8,6 @@ class Feature {
   Feature({
     this.title = "",
     this.color = Colors.black,
-    @required this.data,
+    required this.data,
   });
 }

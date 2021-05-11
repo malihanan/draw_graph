@@ -8,9 +8,9 @@ import 'package:draw_graph/widgets/lineGraph.dart';
 class LineGraph extends StatefulWidget {
   final List<Feature> features;
   final Size size;
-  final List<String> labelX;
-  final List<String> labelY;
-  final String fontFamily;
+  final List<String>? labelX;
+  final List<String>? labelY;
+  final String? fontFamily;
   final Color graphColor;
   final bool showDescription;
   final double graphOpacity;
@@ -18,8 +18,8 @@ class LineGraph extends StatefulWidget {
   final double descriptionHeight;
 
   LineGraph({
-    @required this.features,
-    @required this.size,
+    required this.features,
+    required this.size,
     this.labelX,
     this.labelY,
     this.fontFamily,
@@ -35,7 +35,7 @@ class LineGraph extends StatefulWidget {
 }
 
 class _LineGraphState extends State<LineGraph> {
-  List<Feature> features;
+  List<Feature>? features;
   bool tapped = false;
 
   @override
@@ -92,8 +92,8 @@ class _LineGraphState extends State<LineGraph> {
 
   Widget getFeautures() {
     List<Widget> featureDescriptions = [];
-    for (int i = 0; i < features.length; i++) {
-      featureDescriptions.add(getDescription(features[i]));
+    for (int i = 0; i < features!.length; i++) {
+      featureDescriptions.add(getDescription(features![i]));
     }
 
     return ListView(
