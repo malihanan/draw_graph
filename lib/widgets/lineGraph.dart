@@ -134,7 +134,7 @@ class LineGraphPainter extends CustomPainter {
   void drawGraph(
       Feature feature, Canvas canvas, Size graph, Size cell, Size margin) {
     Paint fillPaint = Paint()
-      ..color = feature.color.withOpacity(graphOpacity ?? 0.3)
+      ..color = feature.color.withOpacity(graphOpacity)
       ..style = PaintingStyle.fill;
     Paint strokePaint = Paint()
       ..color = feature.color
