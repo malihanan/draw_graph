@@ -14,6 +14,8 @@ class LineGraph extends StatefulWidget {
   final Color graphColor;
   final bool showDescription;
   final double graphOpacity;
+  final bool verticalFeatureDirection;
+  final double descriptionHeight;
 
   LineGraph({
     @required this.features,
@@ -24,6 +26,8 @@ class LineGraph extends StatefulWidget {
     this.graphColor = Colors.grey,
     this.showDescription = false,
     this.graphOpacity = 0.3,
+    this.verticalFeatureDirection = false,
+    this.descriptionHeight = 80,
   });
 
   @override
@@ -45,18 +49,29 @@ class _LineGraphState extends State<LineGraph> {
       height: widget.size.height,
       width: widget.size.width,
       child: widget.showDescription
-          ? Column(
-              children: <Widget>[
-                getGraph(Size(widget.size.width, widget.size.height - 70)),
-                SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  height: 28,
-                  child: getFeautures(),
-                ),
-              ],
-            )
+          ? widget.verticalFeatureDirection
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    getGraph(Size(widget.size.width,
+                        widget.size.height - widget.descriptionHeight - 40)),
+                    SizedBox(height: 40),
+                    Container(
+                      height: widget.descriptionHeight,
+                      child: getFeautures(),
+                    )
+                  ],
+                )
+              : Column(
+                  children: <Widget>[
+                    getGraph(Size(widget.size.width, widget.size.height - 70)),
+                    SizedBox(height: 40),
+                    Container(
+                      height: 28,
+                      child: getFeautures(),
+                    ),
+                  ],
+                )
           : getGraph(widget.size),
     );
   }
@@ -82,14 +97,17 @@ class _LineGraphState extends State<LineGraph> {
     }
 
     return ListView(
-      scrollDirection: Axis.horizontal,
+      scrollDirection:
+          widget.verticalFeatureDirection ? Axis.vertical : Axis.horizontal,
       children: featureDescriptions,
     );
   }
 
   Widget getDescription(Feature feature) {
     return Padding(
-      padding: EdgeInsets.only(left: 20, right: 40, bottom: 0, top: 0),
+      padding: widget.verticalFeatureDirection
+          ? EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10)
+          : EdgeInsets.only(left: 20, right: 40, bottom: 0, top: 0),
       child: GestureDetector(
         child: Row(
           mainAxisSize: MainAxisSize.max,

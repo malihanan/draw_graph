@@ -3,8 +3,8 @@
 A dart package to draw line graphs in your flutter app.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/50942732/85844665-b8305300-b7c0-11ea-902c-5e11510b2a8e.png" width="200" title="Graph">
-  <img src="https://user-images.githubusercontent.com/50942732/85844662-b5cdf900-b7c0-11ea-97b8-98fbea59d58b.png" width="200" title="On Tapped">
+  <img src="https://user-images.githubusercontent.com/50942732/117781784-9caa2b80-b25e-11eb-9ede-de11542bd017.jpg" width="200" title="Graph">
+  <img src="https://user-images.githubusercontent.com/50942732/117782154-fa3e7800-b25e-11eb-96da-4f6d53f1a08f.jpg" width="200" title="On Tapped">
 </p>
 
 ## Usage
@@ -35,17 +35,29 @@ A dart package to draw line graphs in your flutter app.
   * showDescription: [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
     
     Whether to show description at the end of graph.
+  * graphOpacity: [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+    
+    The opacity of the area under graph.
+  * verticalFeatureDirection: [bool](https://api.flutter.dev/flutter/dart-core/bool-class.html)
+    
+    Whether to scroll description vertically or not.
+  * descriptionHeight: [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+    
+    If scrolling the description vertically, what should be the height of the description box.
   
   #### Constructor
   ```
-  LineGraphPainter({
+  LineGraph({
     @required List<feature> features, 
     @required Size size,
     List<String> labelX: [],
     List<String> labelY: [],
     String fontFamily: 'sans serif',
-    Color graphColor: Colors.grey
-    bool showDescription: false
+    Color graphColor: Colors.grey,
+    bool showDescription: false,
+    double graphOpacity = 0.3,
+    bool verticalFeatureDirection = false,
+    double descriptionHeight = 80,
   });
   ```
 
@@ -53,11 +65,14 @@ A dart package to draw line graphs in your flutter app.
   ```
   LineGraph({
     features: features,
-    size: Size(500, 400),
+    size: Size(320, 400),
     labelX: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
     labelY: ['20%', '40%', '60%', '80%', '100%'],
     showDescription: true,
     graphColor: Colors.white30,
+    graphOpacity: 0.2,
+    verticalFeatureDirection: true,
+    descriptionHeight: 130,
   })
   ```
 

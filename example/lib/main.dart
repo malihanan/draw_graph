@@ -73,12 +73,14 @@ class MyScreen extends StatelessWidget {
         ),
         LineGraph(
           features: features,
-          size: Size(320, 300),
+          size: Size(320, 400),
           labelX: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
           labelY: ['20%', '40%', '60%', '80%', '100%'],
           showDescription: true,
           graphColor: Colors.white30,
-          graphOpacity: 0.3,
+          graphOpacity: 0.2,
+          verticalFeatureDirection: true,
+          descriptionHeight: 130,
         ),
         SizedBox(
           height: 50,
