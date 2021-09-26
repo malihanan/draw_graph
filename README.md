@@ -63,7 +63,7 @@ A dart package to draw line graphs in your flutter app.
 
   #### Example
   ```
-  LineGraph({
+  LineGraph(
     features: features,
     size: Size(320, 400),
     labelX: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
@@ -73,7 +73,7 @@ A dart package to draw line graphs in your flutter app.
     graphOpacity: 0.2,
     verticalFeatureDirection: true,
     descriptionHeight: 130,
-  })
+  )
   ```
 
 * Creating a list of Features
