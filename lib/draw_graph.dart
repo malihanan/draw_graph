@@ -1,51 +1,56 @@
 library draw_graph;
 
 import 'package:flutter/material.dart';
-
 import 'package:draw_graph/models/feature.dart';
-import 'package:draw_graph/widgets/lineGraph.dart';
+import 'package:draw_graph/widgets/linegraph.dart';
 
 class LineGraph extends StatefulWidget {
-  final List<Feature> features;
+  final bool isShowGraphLine;
   final Size size;
   final List<String>? labelX;
   final List<String>? labelY;
+  final List<int> list;
+
+  final int labelYGap;
   final String? fontFamily;
   final Color graphColor;
+  final Color backgroundColor;
   final bool showDescription;
   final double graphOpacity;
   final bool verticalFeatureDirection;
   final double descriptionHeight;
 
-  LineGraph({
-    required this.features,
+  const LineGraph({
+    required Key key,
+    required this.isShowGraphLine,
     required this.size,
     this.labelX,
+    required this.list,
     this.labelY,
+    required this.labelYGap,
     this.fontFamily,
+    this.backgroundColor = Colors.grey,
     this.graphColor = Colors.grey,
     this.showDescription = false,
     this.graphOpacity = 0.3,
     this.verticalFeatureDirection = false,
     this.descriptionHeight = 80,
-  });
+  }) : super(key: key);
 
   @override
   _LineGraphState createState() => _LineGraphState();
 }
 
 class _LineGraphState extends State<LineGraph> {
-  List<Feature>? features;
   bool tapped = false;
 
   @override
   Widget build(BuildContext context) {
     setState(() {
-      if (!tapped) {
-        features = widget.features;
-      }
+      if (!tapped) {}
     });
     return Container(
+      color: widget.backgroundColor,
       height: widget.size.height,
       width: widget.size.width,
       child: widget.showDescription
@@ -55,20 +60,20 @@ class _LineGraphState extends State<LineGraph> {
                   children: [
                     getGraph(Size(widget.size.width,
                         widget.size.height - widget.descriptionHeight - 40)),
-                    SizedBox(height: 40),
-                    Container(
+                    const SizedBox(height: 40),
+                    SizedBox(
                       height: widget.descriptionHeight,
-                      child: getFeautures(),
+                      child: getFeatures(),
                     )
                   ],
                 )
               : Column(
                   children: <Widget>[
                     getGraph(Size(widget.size.width, widget.size.height - 70)),
-                    SizedBox(height: 40),
-                    Container(
+                    const SizedBox(height: 40),
+                    SizedBox(
                       height: 28,
-                      child: getFeautures(),
+                      child: getFeatures(),
                     ),
                   ],
                 )
@@ -80,21 +85,20 @@ class _LineGraphState extends State<LineGraph> {
     return CustomPaint(
       size: size,
       painter: LineGraphPainter(
-        features: features,
-        labelX: widget.labelX,
-        labelY: widget.labelY,
-        fontFamily: widget.fontFamily,
+        isShowGraphLine: widget.isShowGraphLine,
+        labelX: widget.labelX ?? [],
+        labelY: widget.labelY ?? [],
+        labelYGab: widget.labelYGap,
+        fontFamily: widget.fontFamily ?? '',
         graphColor: widget.graphColor,
         graphOpacity: widget.graphOpacity,
+        list: widget.list,
       ),
     );
   }
 
-  Widget getFeautures() {
+  Widget getFeatures() {
     List<Widget> featureDescriptions = [];
-    for (int i = 0; i < features!.length; i++) {
-      featureDescriptions.add(getDescription(features![i]));
-    }
 
     return ListView(
       scrollDirection:
@@ -106,8 +110,8 @@ class _LineGraphState extends State<LineGraph> {
   Widget getDescription(Feature feature) {
     return Padding(
       padding: widget.verticalFeatureDirection
-          ? EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10)
-          : EdgeInsets.only(left: 20, right: 40, bottom: 0, top: 0),
+          ? const EdgeInsets.only(left: 0, right: 0, bottom: 10, top: 10)
+          : const EdgeInsets.only(left: 20, right: 40, bottom: 0, top: 0),
       child: GestureDetector(
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -120,7 +124,7 @@ class _LineGraphState extends State<LineGraph> {
                 color: feature.color.withOpacity(widget.graphOpacity),
               ),
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Text(
               feature.title,
               style: TextStyle(
@@ -132,7 +136,6 @@ class _LineGraphState extends State<LineGraph> {
         onTap: () {
           setState(() {
             if (!tapped) {
-              features = [feature];
               tapped = true;
             } else {
               tapped = false;
